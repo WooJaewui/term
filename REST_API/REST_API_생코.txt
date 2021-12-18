@@ -1,0 +1,62 @@
+
+ 기계들의 대화법 - REST API.
+
+
+
+ # REST API.
+
+REST API.
+HTTP를 이용해서 기계들이 통신을 할 때 HTTP의 잠재력을 최대한 사용하기 위한 모범사례.
+
+Resource.
+데이터들의 집합.
+
+Collection
+URI를 통해 Resource를 표현한 것.
+element들이 모여있는 하나의 집합.
+http://example.com/topics
+
+element.
+하나하나의 데이터.
+http://example.com/topics/1
+http://example.com/topics/2
+
+Resource 가공방법. ( method )
+Create : post
+Read : get
+Update : put ( 전체내용변경 - id를 제외한 모든 내용 변경 ), patch ( 부분변경 )
+Delete : delete
+
+Request Headers view resource.
+브라우저와 서버가 통신한 실제 데이터를 확인할 수 있다.
+POST /topics HTTP/1.1 
+
+State 201.
+서버에서 클라이언트에게 성공적으로 Create을 수행했다고 클라이언트에 보냄.
+
+State 200.
+서버에서 클라이언트에게 성공적으로 Read를 수행했다고 클라이언트에 보냄
+
+
+
+ # REST API 규정 정리.
+
+REST API에서 규정하고 있는 것.
+Resource를 식별할 때는 URI로 식별한다.
+어떠한 행위를 할 때는 HTTP method를 사용한다.
+결과를 알려줄때는 응답 코드를 사용한다.
+
+REST API에서 규정하고 있지 않은 것.
+어떤 데이터 Type으로 통신할 것인지. ( JSON, XML )
+
+
+
+ # 관계를 맺고 있는 Resouce의 REST API.
+
+관계 Resouce URI 표현.
+http://example.com/topics/1/comments : 도메인이름 / 부모collection / element / 자식collection
+
+
+
+
+ 
