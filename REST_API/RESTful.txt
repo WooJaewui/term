@@ -1,0 +1,27 @@
+
+ RESTful.
+
+
+
+ # RESTful.
+
+Stateful, Stateless.
+Stateful : 상태를 저장하는.
+Stateless : 상태를 저장하지 않는. ( 상태가 없는 )
+
+REST REpresentational State Transfer.
+어떠한 상태 표현을 주고 받는다.
+
+HTTP Hyper Text Transfer Protocol.
+Hyper Text를 주고받는 규약.
+
+RESTful.
+REST하다. REST스럽다.
+
+REST가 유행하게 된 이유.
+SOAP가 복잡하고, 뭔가를 설치해야됐다.
+REST는 HTTP를 활용하기 때문에 따로 설치가 필요하지않다.
+
+
+
+
