@@ -1,0 +1,148 @@
+
+ Mustache.
+
+
+
+ # 1.
+
+mustach cdn.
+mustach cdn을 검색하면 mustach js 파일 경로를 알 수 있다.
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+
+일반 데이터 표시하기 예시.
+php 파일.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+	<script>
+		var cars = { name : "베뉴" } ;
+		$( document.ready( function( ) { 
+			var output = Mustache.render( $( "#divCars" ).html( ) , cars ) ;
+			$( "#divCars" ).html( output ) ;
+		} ) ;
+	</script>
+</head>
+<body>
+	<div>
+		<span>자동차 모델</span>
+	</div>
+	<div id="divCars">
+		{{ name }}
+	</div>
+</body>
+
+복수 데이터 표시하기 예시.
+... 생략 ...
+<head>
+<meta charset="UTF-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+	<script>
+		var cars = { "CAR" : [
+				{ name : "베뉴" } , { name : "코나" } , ... 
+			]
+		 } ;
+		$( document.ready( function( ) { 
+			var output = Mustache.render( $( "#divCars" ).html( ) , cars ) ;
+			$( "#divCars" ).html( output ) ;
+		} ) ;
+	</script>
+</head>
+<body>
+	<div>
+		<span>자동차 모델</span>
+	</div>
+	<div id="divCars">
+		{{ #CAR }}
+			<div>
+				{{ name }} 
+			</div>
+		{{ /CAR }} 
+	</div>
+</body>
+
+응용 예제 1.
+<head>
+<meta charset="UTF-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+	<script>
+		var cars = { "CAR" : [ { maker : "현대자동차 ,
+				type : [ { type_name : "소형" } , cars : [ { name : "코나" } , ... ] } 
+			]
+		 } ;
+		$( document.ready( function( ) { 
+			var output = Mustache.render( $( "#divCars" ).html( ) , cars ) ;
+			$( "#divCars" ).html( output ) ;
+		} ) ;
+	</script>
+</head>
+<body>
+	<div>
+		<span>자동차 모델</span>
+	</div>
+	<div id="divCars">
+		{{ #CAR }}
+			{{ maker }} 
+			<div>
+				{{ #type }}
+					{{ type_name }}
+					<div>
+						{{ #cars }}
+							{{ name }} 
+						{{ /cars }} 
+					</div>
+				{{ /type }} 
+			</div>
+		{{ /CAR }} 
+	</div>
+</body>
+
+
+
+ # 2.
+
+응용 예제2.
+<meta charset="UTF-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+	<script>
+		var cars = { "CAR" : [ { maker : "현대자동차 ,
+				type : [ { type_name : "소형" } , cars : [ { name : "코나" } , ... ] } 
+			] ,
+			 "count" : function ( ) { 
+				return this.cars.length ;
+			}
+		 } ;
+		$( document.ready( function( ) { 
+			var output = Mustache.render( $( "#divCars" ).html( ) , cars ) ;
+			$( "#divCars" ).html( output ) ;
+		} ) ;
+	</script>
+</head>
+<body>
+	<div>
+		<span>자동차 모델</span>
+	</div>
+	<div id="divCars">
+		{{ #CAR }}
+			{{ maker }} 
+			<div>
+				{{ #type }}
+					{{ type_name }} ( {{ count }} )
+					<div>
+						{{ #cars }}
+							{{ name }} 
+						{{ /cars }} 
+					</div>
+				{{ /type }} 
+			</div>
+		{{ /CAR }} 
+	</div>
+</body>
+
+자료
+# 1 : www.youtube.com/watch?v=rSGDR3d1vTc&t=38s
+# 2 : www.youtube.com/watch?v=PM5nEiTZ6uE
+제작자 github : github.com/janl/mustache.js
+
+
