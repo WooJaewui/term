@@ -1,0 +1,66 @@
+
+ 메디포스트 7.0 , 제일 약품.
+ 한컴 6.7.
+
+
+ 한컴.
+
+회계전표, 구매품의서, 외주품의서.
+숫자 오른쪽 정렬, 날짜 가운데 정렬,
+일반적인 날짜 왼쪽 정렬.
+
+WSDL 방식. ( SoapUI )
+
+Web Service Client.
+custom -> webservice. ( git - team history에서 수석님이랑, 선임님 이력 확인하기 )
+
+구매내역서.
+
+SYSLOGIN_OUT_... = Y ( 테스트 하려면 필요함 )
+
+sysout1201
+
+
+extra_authoration.
+extra_wsdl_connection.
+extra_interlook_info.
+
+연동 API 관리.
+
+sitemesh - service : 데이터
+openapi
+
+_gowrite
+
+Open_Api 확인.
+/swagger-ui.html#/Open_Api
+
+양식 생성 , 연동 API.
+
+gitlab
+opt.naonsoft.com/ekp
+결제 상신.
+
+
+라이브러리 -> maven 라이브러리 -> Jad 
+이클립스 마켓 -> jda ( 디컴파일 )
+
+eclipse java decompiler.
+
+
+
+ # 정리.
+
+preferences 설정.
+1. General -> Search -> Reuse editors to show matches.
+2. Maven -> Errors / Warning -> Out-out... , Plugin execution ... Ignore로 변경.
+
+
+
+
+
+
+
+
+
+

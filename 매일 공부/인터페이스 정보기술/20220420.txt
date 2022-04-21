@@ -1,0 +1,93 @@
+
+ 20220420.
+
+
+
+INSERT INTO RS_PCN (
+    PCN_SEQNO,
+    PCN_NM,
+    PCN_NO,
+    CHANGEPOINT_APPLC_CODE,
+    CTMMNY_SEQNO,
+    CHANGEPOINT_SE_CN,
+    MTRIL_SEQNO,
+    CHANGEPOINT_STTUS_CODE,
+    PREARNGE_DTE,
+    PCN_GRAD_CODE,
+    M5E1_CODE,
+    CHRG_DEPT_CODE,
+    CHARGER_ID,
+    PCN_CN,
+    PCN_BFE_CN,
+    PCN_AFTER_CN,
+    PCN_RESULT_CODE,
+    PBLICTE_DTE,
+    COMPT_DTE,
+    ATCHMNFL_SEQNO,
+    SANCTN_SEQNO,
+    WDTB_SEQNO,
+    EXMNT_SEQNO,
+    DELETE_AT,
+    LAST_CHANGER_ID,
+    LAST_CHANGE_DT
+)VALUES (
+    SQ_RS_PCN.NEXTVAL,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      'N',
+      1,
+      SYSDATE
+);
+
+
+ # 정리.
+
+
+
+
+C100001327	변경점 적용
+C100001328	PCN NO
+C100001329	해당 제품
+C100001330	변경점 상태
+C100001331	예정 일자
+C100001332	PCN grade
+C100001333	5M1E
+C100001334	PCN 내용
+C100001335	PCN 전
+C100001336	PCN 후
+C100001337	PCN 결과
+C100001338	고객사명
+C100001339	보고서 출력
+
+
+
+
+
+
+
+
+
+
+
+
+

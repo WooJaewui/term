@@ -1,0 +1,33 @@
+
+
+1. JDK연동 Preferences - java - Installed JREs	이름과 경로 jdk로 설정 
+
+2. general - Content Types.	Java Class File, Text를 선택해서 default encoding을 UTF-8로 업데이트
+
+3. workspace의 encoding 을 UTF-8로 설정
+
+4. General >Editors > Spelling 을 UTF-8로 설정
+
+5. 검색창에 encoding을 치고 CSS, HTML, JSP, XML을 UTF-8로 변경
+
+6. anyEdit에 화이트스페이스 체크 해제
+
+7. Preferences - Maven 에 User Setting항목에 글로벌세팅설정에 메이븐 설치경로의 conf경로에  setting.xml 선택
+
+8. tomcat server를 더블클릭해서 Open launch configuration - arguments 에
+-Xms1024m -Xmx1024m -XX:PermSize=512m -XX:MaxPermSize=512m -Dspring.profiles.active=local
+추가 Timeouts 를start = 999, stop = 60 port의 HTML을 80으로
+
+9. console 버퍼크기를 늘려줌
+---jpa 로딩 해결
+Window - Preferences - Maven - Java EE Intergration - JPA Configurator 체크해제
+
+Window - Preferences - Validation - Suspend all validators 체크해제하고 JPA Validator 체크해체하거나 Disable All로 모든 항목 해제
+
+10. context.xml와 default.properties파일 생성
+
+11. search 창 새창으로 열기
+ - Window - Preferences > General > Search > "Reuse editors to show matches" 체크를 해제
+
+
+

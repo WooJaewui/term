@@ -1,0 +1,94 @@
+
+ 환경설정 정리.
+
+
+
+ # 환경설정 정리.
+
+gitblit.
+https://192.168.1.39:8443 gitblit 접속.
+아이디 glib 비밀번호 123123 입력.
+저장소 URL ssh 확인하기.
+
+이클립스 preferences.
+General -> Network Connections -> SSH2 -> Key Management. ( 키 생성 후 재시작 )
+General -> Maven -> User Settings -> maven settings.xml 경로 설정 -> update Settings.
+Window - Preferences - Maven - Java EE Intergration - JPA Configurator 체크해제.
+Validation -> Disable All -> apply.
+기본 인코딩 UTF-8 설정.
+
+DBeaver.
+Connection
+192.168.1.36:3306, dongwonsb_gw_db , naongw, qlalf13.
+
+git 프로젝트 연결.
+저장소 URL ssh 작성 -> gitblit 아이디 입력.
+git -> clone -> 이클립스 껏다켜기 -> Working Tree -> import projects.
+체크박스 체크하고 넘어가기.
+
+context.xml
+196.192.1.36:3306 -> url 내부에 변경 -> 로컬 sns에 name명만 달리해서 복붙.
+
+settings.xml 작성.
+<localRepository>C:/tools/mavenrepository</localRepository>
+<servers>
+	<server>
+      		<id>naonsoft-release</id>
+      		<username>gwuser</username>
+      		<password>naon1234</password>
+    	</server>
+    
+    	<server>
+      		<id>naonsoft-thirdparty</id>
+      		<username>gwuser</username>
+      		<password>naon1234</password>
+	</server>
+    	<server>
+      		<id>naonsoft-snapshot</id>
+      		<username>gwuser</username>
+      		<password>naon1234</password>
+    	</server>
+</servers>
+
+pom.xml
+rombok 설정하기. ( 기본 ) 
+<dependencies>
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.22</version>
+		<scope>provided</scope>
+	</dependency>
+</dependencies>
+추가적으로 설정할 것 있으면 dependency 추가하기.
+
+server.xml.
+<Connector connectionTimeout="20000" port="80" protocol="HTTP/1.1" redirectPort="443"/>
+<Connector SSLEnabled="true" URIEncoding="UTF-8" clientAuth="false" keystoreFile="C:/workspace/cnbTest/SSL/star_dongwonjeilbank_kr.jks" keystorePass="loan21!" maxThreads="150" port="443" protocol="org.apache.coyote.http11.Http11Protocol" scheme="https" secure="true" sslProtocol="TLS"/>
+<Connector protocol="AJP/1.3" port="8009" redirectPort="8443" secretRequired="false"/>
+
+Tomcat 8.5.
+Open launch configuration -> Arguments -> -Xms2048m -Xmx4096m -Dspring.profiles.active=local 작성.
+Timeouts Start 999.
+Modules -> Add External Web Module눌러서 파일 업로드 경로 추가.
+
+Mobaxterm
+
+host.
+경로 : C:\Windows\System32\drivers\etc\hosts
+127.0.0.1 gw.dongwonjeilbank.kr
+127.0.0.1 mgw.dongwonjeilbank.kr
+127.0.0.1 tgw.dongwonjeilbank.kr
+
+tomcat.
+tomcat -> lib 안에 ojdbc 관련 드라이버들 넣기.
+
+아이디 비밀번호.
+123456789
+sysout1201#
+
+
+
+
+
+

@@ -1,0 +1,91 @@
+
+ 20220222.
+
+
+
+ # Properties.
+
+생성하기.
+Properties prop ;
+
+읽어오기.
+prop.load( 파일경로 ) ;
+
+사용하기.
+getProperty( 파일에있는 변수이름, 디폴트값 ) ;
+
+특징.
+맵과 같은 형태를 가지고 있어서 key,value 등의 메소드를 활용할 수 있다.
+keySet( ) 등.
+
+
+
+ # SwaggerConfig.
+
+Swagger 어노테이션.
+@Api : 클래스를 Swagger 리소스 대상으로 표시
+@ApiOperation : 요청 URL 에 매핑된 API 에 대한 설명
+@ApiParam : 요청 Parameter에 대한 설명 및 필수여부, 예제값 설정
+@ApiResponse : 응답에 대한 설명
+
+swagger 경로.
+domain/Context/swagger-ui.html
+
+
+
+ # String vs StringBuffer / StringBuilder.
+
+String.
+문자가 추가되면 새로운 메모리 공간을 확보.
+
+StringBuffer / Stringbulder.
+문자가 추가되면 기존 문자에 append( )해서 사용.
+
+StringBuffer.
+동기화를 지원해서 멀티쓰레드 환경에서 안전하게 사용.
+
+StringBuilder.
+동기화를 지원하지 않음으로 멀티쓰레드 환경에서 사용할 경우 불안전하다. ( 단일쓰레드에서 효율적 )
+
+
+
+ # 파일 시스템.
+
+NTFS New Technology File System.
+윈도우 NT 계열 운영체제의 파일 시스템이다.
+
+
+
+ # IP.
+
+AP Access Point.
+유선인터넷을 무선으로 변환시키는 장치.
+
+NAS Network Attached Storage.
+네트워크 결합 스토리지.
+LAN으로 연결하는 외장 하드디스크.
+
+DAS Direct Attached Storage.
+직접 결합 저장장치.
+
+SAN Storage Area Network.
+다수의 스토리지 서버를 광단자 네트워크로 묶어 마치 하나의 디스크처럼 사용할 수 있게 해준다.
+좋은 성능을 가지지만 발열, 소음, 설치 공간 문제가 크다.
+NAS의 상위개념이다.
+
+IIS Internet Information Services.
+마이크로소프트 윈도우를 사용하는 서버들을 위한 인터넷 기발 서비스들의 모임이다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

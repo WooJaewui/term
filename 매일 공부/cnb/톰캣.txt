@@ -1,0 +1,119 @@
+
+ tomcat.
+
+
+
+ # Java 관련.
+
+J2EE Java 2 Enterprise Edition.
+기업환경에 어플리케이션을만드는데 필요한 스펙들을 모아둔 집합이다.
+
+EJB Enterprise JavaBeans.
+기업환경의 시스템을 구현하기 위한 서버측 컴포넌트 모델.
+
+컨테이너 종류.
+1. 웹 컨테이너 ( Java Server Pages, 서블릿 등 )
+2. EJB 컨테이너 ( Enterprise JavaBeans )
+
+
+
+ # tomcat 구조.
+
+Tomcat 기본 폴더 구조.
+tomcat : tomcat 루트 폴더.
+bin : tomcat 실행에 필요한 실행파일.
+common : 웹 어플리케이션에서 공통적으로 사용하는 클래스파일.
+conf : 서버 전체 설정파일 폴더. ( server.xml 등 )
+logs : 예외 발생 사항 등의 로그저장.
+server : 서버에서 사용하는 클래스 라이브러리.
+temp : 임시 저장용 폴더.
+webapps : 웹 어플리케이션 루트 폴더.
+work : jsp 파일을 서블릿형태로 변환한 java파일과 class 파일 저장.
+
+Tomcat 웹 어플리케이션 폴더 구조.
+webapp : 루트 폴더.
+WEB-INF : 웹 어플리케이션 설정 및 참조 클래스 파일.
+classes : Java class 파일.
+lib : jar 라이브러리.
+web.xml : application 관련 설정 파일.
+META-INF - context.xml : tomcat container 관련 파일.
+기타 - jsp, resources, commons 등.
+
+servers에 xml들.
+servers 안에 있는 context.xml , server.xml , web.xml에 설정을 하면 모든 어플리케이션에 환경설정한다.
+
+WEB-INF / web.xml , META-INF / context.xml.
+웹 어플리케이션 별로 각각 다른 환경설정을 할 때 사용한다.
+
+
+
+ # tomcat 서버 설정하기.
+
+servlet 태그.
+web.xml에서 <servlet>를 사용하면 servlet으로 등록할 수 있다.
+<servlet-name> , <servlet-class> , <load-on-startup> 등의 태그로 설정할 수 있다.
+
+load-on-startup.
+load-on-startup에 숫자를 지정하고 0보다 크면 컨테이너가 실행되면서 servlet이 초기화된다.
+지정한 숫자는 우선순위를 의미하며, 작은숫자부터 먼저 초기화 된다.
+
+load-on-startup 구현방법.
+1. 어노테이션 설정 : @webservlet( name="이름" , urlPatterns ={ "/url } , loadOnStartup = 1 ) 
+2. web.xml 설정 : <servlet><load-on-startup> 1 </load-on-startup></servlet>
+
+
+
+ # DB 커넥션하기.
+
+JNDI Java Naming and Directory Interface.
+디렉토리에서 제공하는 데이터 및 객체를 참고하기 위한 자바 API.
+운영, 관리, 최적화 문제 대처 등에 이점을 가진다.
+
+context.xml DataSource 입력.
+<Context .... >
+	<Resource 
+		name = "jdbc/oracle"
+		driverClassName="oracle.jdbc.driver.OracleDriver"
+		url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+		username="scott"
+		password="tiger"
+		name="jdbc/myoracle"
+		type="javax.sql.DataSource"
+		maxActive="4"
+		maxIdle="2"
+		maxWait="5000" />
+</Context>
+
+web.xml에서 사용하기.
+<resource-ref>
+	<description>DB Connection</description>
+	<res-ref-name>jdbc/oracle</res-ref-name>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-auth>Container</res-auth>
+</resource-ref>
+
+<resource-ref> 태그 설명.
+description : 리소스에 대한 설명을 지정.
+res-ref-name : 사용하고자 하는 리소스의 이름을 지정. ( context.xml에서 설정한 이름 )
+res-type : 사용하고자 하는 리소스의 타입을 지정. ( 클래스 )
+res-auth : 리소스에 대한 권한이 누구인지 지정.
+
+
+
+ # 출처.
+
+참고자료.
+Java 관련 : https://docs.oracle.com/cd/E19159-01/820-4902/abfar/index.html
+load-on-startup : https://java117.tistory.com/21
+JNDI : https://go-coding.tistory.com/76 
+톰켓 xml : https://sallykim5087.tistory.com/130
+Context 설정 : https://parkcheolu.tistory.com/130
+DataSource 관련 : https://opentutorials.org/module/3569/21223
+
+
+
+
+
+
+
+

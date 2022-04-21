@@ -1,0 +1,39 @@
+
+ 20220218.
+
+
+
+ # 용어 정리.
+
+SCM Supply Chain Management.
+수요계획에서부터 고객에 이르기까지 최적의 공급망 관리를 위해 역할을 수행한다.
+
+
+
+ # JSON.
+
+자바 객체 -> JSON으로 바꾸기.
+Gson gson = new Gson( ) ;
+gson.toJson( 1 ) == 1 ;
+
+JSON -> 자바 객체로 바꾸기.
+Gson gson = new Gson( ) ;
+gson.fromJson( Json데이터 , 클래스타입.class ) ;
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
