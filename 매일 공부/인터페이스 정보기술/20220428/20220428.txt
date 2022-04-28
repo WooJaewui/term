@@ -1,0 +1,41 @@
+
+ 20220428.
+
+
+
+ # SQL.
+
+<selectKey>
+개념.
+	● SQL 문 실행 전 후에 실행하여 VO안에 데이터를 저장할 수 있다.
+속성.
+	● keyColumn : selectKey 구문의 결과가 셋팅될 대상 프로퍼티.
+	● resultType : 결과의 타입.
+	● order : BEFORE , AFTER을 값으로 사용할 수 있다. ( SQL문 앞, 뒤 어디서 실행할지 )
+
+LISTAGG( [ 합칠 컬럼명 ] , [ 구분자 ] ) WITHIN GROUP( ORDER BY [ 정렬 컬럼명 ] )
+개념.
+	● 컬럼을 합칠 때 사용한다.
+사용예시.
+SELECT LISTAGG( NO , ',' ) WITHIN GROUP( ORDER BY NO ) AS MEMBER_NOS
+FROM MEMBER ;
+
+
+
+ # jquery.
+
+form.reset( ) ;
+● form을 초기화 시킬 때 사용한다.
+● hidden 값들을 변하지 않는다.
+
+
+
+
+
+
+
+
+
+
+
+
