@@ -1,0 +1,60 @@
+
+ 20220502.
+
+
+
+ # JS.
+
+document.getElementById( ).id
+선택한 element에 id를 반환한다.
+
+
+
+ # SQL.
+
+SQL 조건문 표현.
+CASE 컬럼명 | 표현식 
+WHEN 조건식1 
+THEN 결과1
+WHEN 조건식2
+THEN 결과2
+...
+END
+
+컬럼 값 합치기.
+SELECT CONCAT( 컬럼1 , "구분문자" , 컬럼2 ) FROM 테이블명.
+
+로우 값 합치기.
+SELECT GROUP_CONCAT( 컬럼1, "구분문자", 컬럼2 ) FROM 테이블명.
+
+
+
+ # 프레임워크.
+
+전자정부프레임워크와 스프링의 차이.
+스프링 : 자바로 개발한 프레임워크.
+전자정부 프레임워크 : 스프링으로 만든 솔루션.
+
+
+
+ # Logger.
+
+Slf4J.
+로깅에 대한 추상 레이어를 제공하는 interface의 모음이다.
+
+logback.
+● 로깅에 대한 로직을 가지고 있는 slf4j 구현체 중 하나이다.
+● Appender
+	○ 어떤 포맷으로 로그를 남길 것인지 정할 수 있다.
+	○ ConsoleAppender : 콘솔에 로그를 어떤 포맷으로 출력할지 결정.
+	○ FileAppender : 파일에 로그를 어떤 포맷으로 출력할지 결정.
+	○ RollingFileAppender : 하루 단위로 로그 파일을 백업하면서 로그를 남김.
+● logger.
+	○ 어떤 패키지 이하의 클래스에서 어떤 레벨 이상의 로그를 출력할지 결정.
+	○ Log Level 5가지를 설정할 수 있다. ( trace, debug, info, warn, error )
+● root.
+	○ 특별히 설정하지 않을 경우 로깅할 기본값을 설정한다.
+	○ <appender-ref ref="이름" />을 통해 Appender에서 설정한 것을 가져올 수 있다.
+
+
+
