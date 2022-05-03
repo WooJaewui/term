@@ -1,0 +1,52 @@
+
+ 20220503.
+
+
+
+ # JS.
+
+엔터키 이벤트 기본형.
+function enterKey( ) { 
+	if( window.event.keyCode == 13 ) { 
+		엔터키를 눌렀을 때 실행할 코드 ;
+	}
+}
+● 출처 : https://blog.miyam.net/139
+
+<form onsubmit = "return false">
+submiti button을 클릭해도 action이 발동되지 않는다.
+
+display : flex.
+개념.
+	● flex는 Flexible Box의 줄임말으로, 컨테이너와 아이템 두 가지 요소를 가지고 있다.
+구성 요소.
+	● 컨테이너 : 아이템들을 포함하는 부모 역할을 한다.
+	● 아이템 : 각 요소로서 존재한다.
+css 사용예시.
+.flex-container { 
+	display : flex ;
+}
+.flex-item { 
+	width : 100px ;
+	height : 100px ;
+	...
+}
+출처.
+	● https://wooncloud.tistory.com/10
+
+
+
+ # SQL.
+
+MERGE문.
+MERGE INTO 테이블1
+USING 테이블2
+ON ( 조인 조건 )
+WHEN MATCHED THEN
+	조건이 맞을 때 실행할 SQL.
+WHEN NOT MATCHED THEN
+	조건이 맞지 않을때 실행할 SQL.
+
+
+
+
