@@ -1,0 +1,44 @@
+
+ 정리.
+
+
+
+ # AUI 이벤트.
+
+cellEditEnd.
+● 편집, 수정 모드에서 셀 편집 종료 시 발생하는 이벤트.
+● AUIGrid.updateRow와 함께 사용해서 Check 이벤트를 처리할 수 있다.
+
+
+
+ # 자바.
+
+ResponseEntity.
+개념.	
+	● HttpEntity라는 클래스가 존재한다. ( Http 요청 또는 응답에 해당하는 HttpHeader와 HttpBody를 포함하는 클래스 )
+	● HttpEntity 클래스를 상속받아 구현한 클래스가 RequestEntity, ResponseEntity 클래스이다.
+	● ResponseEntity는 사용자의 HttpRequest에 대한 응답 데이터를 포함하는 클래스이다.
+	● HttpRequest는 HttpStatus, HttpHeaders, HttpBody를 포함한다.
+
+
+
+ # JS.
+
+!!변수.
+● 변수가 "undefined", '', null 일 경우 !변수 == true이다.
+● 변수가 값이 있는 경우 !변수 == false이다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
