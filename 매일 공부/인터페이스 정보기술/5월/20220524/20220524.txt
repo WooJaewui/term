@@ -1,0 +1,238 @@
+
+ 정리.
+
+
+
+ # 용어 정리.
+
+WBS Work Breakdown Structure.
+프로젝트를 소규모의 구성 단위까지 나누어 전달할 수 있는 기능.
+
+
+
+ # 양식관리.
+
+html5Viewer.
+var reportingServerPath = http://203.229.218.192:23002/ReportingServer/service ;
+var loginParameter = /rcontype ["Data Server"] /rf ["http://203.229.218.192:23002/DataServer/rdagent.jsp"] /rsn ["CM_FS"] /rui ["admin"] /rpw ["iit3274!@"]
+var filePath = fileUrl = request.getServletContext().getRealPath("");
+
+fileArr = printngOrginlFileNm = PCN.mrd;
+parameterArr1 = pcnSeqno;
+
+
+mrdList = {
+	mrdPath : http://203.229.218.192:23002/ReportingServer/mrd/CM_FS/PCN.mrd,
+	mrdParam : /rcontype [Data Server] /rf [http://203.229.218.192:23002/DataServer/rdagent.jsp] /rsn [CM_FS] /rui [admin] /rpw [iit3274!@] /rp [pcnSeqno]
+}
+
+viewerFunc( reportingServerPath , mrdList )
+
+reportingServerPath = http://203.229.218.192:23002/ReportingServer/service
+
+viewer = new m2soft.crownix.Viewer( reportingServerPath );
+viewer.openFile( mrdList );
+
+
+
+ # Serialize.
+
+Serialize.
+- Java 내부 시스템에서 사용되는( JVM 메모리에 올려진 ) 객체나 데이터를 외부에서 사용할 수 있도록 Byte 형태로 변환하는 것.
+
+Serialize가 왜 필요한가 ?
+- 대부분 OS의 프로세스 구현은 서로 다른 가상메모리주소공간( Virtual Address Space WAS )을 갖기 때문에 Object 타입의 참조값 데이터 인스턴스를 전달할 수 없다.
+- 데이터 전달을 위해서는 메모리 공간의 주소값이 아닌 Byte 형태로 직렬화된 객체 데이터를 전달해야 한다.
+
+특징.
+- 객체 안에 내부 객체는 Primitive 타입 데이터로 변환한다.
+- 직렬화 된 데이터는 모두 Primitive 타입의 데이터 묶음이다.
+- 직렬화/역직렬화는 JSON, CSV 등의 포맷을 통해 쉽게 개발이 가능하며, java.io.Serializable 인터페이스만으로도 직렬화/역직렬화 가능.
+
+직렬화의 조건.
+- java.io.Serializable 인터페이스를 상속받은 객체와 Primitive 타입의 데이터가 직렬화의 대상이 될 수 있다.
+- 객체의 멤버들 중 Serializable 인터페이스가 구현되지 않은 것이 존재하면 안된다.
+- 객체의 멤버들 중 직렬화에서 빼고 싶은 멤버는 Trasient를 선언하면 된다.
+
+역직렬화 조건.
+- 직렬화 대상이 된 객체의 클래스가 클래스 패스에 존재해야 하며 import 되어 있어야 한다.
+- 자바 직렬화 대상 객체는 동일한 serialVersionUID를 가지고 있어야 한다.
+- 
+
+직렬화가 사용되는 상황.
+- JVM의 메모리에서 상주하는 객체 데이터를 그대로 영속화 Persistence할 때 사용된다.
+- 시스템이 종료되더라도 사라지지 않으며, 영속화된 데이터이기 때문에 네트워크로 전송도 가능하다.
+- Servlet Session.
+	- Servlet 기반의 WAS들은 대부분 세션의 Java 직렬화를 지원한다.
+	- 파일로 저장, 세션 클러스터링, DB를 저장하는 옵션 등을 선택하면 세션 자체가 직렬화되어 저장 및 전달된다.
+- Cache.
+	- 캐시할 부분을 직렬화된 데이터를 저장해서 사용.
+- Java RMI( Remote Method Invocation )
+	- 원격 시스템의 메서드를 호출할 때 전달하는 메시지( 객체 )를 직렬화하여 사용.
+	- 메시지( 객체 )를 전달받은 원격 시스템에서는 메시지( 객체 )를 역직렬화하여 사용.
+- 객체가 세션에 저장하지 않는 단순한 데이터 집합이고, 컨트롤러에서 생성되어서 뷰에서 소멸하는 데이터의 전달체라면 직렬화는 고려하지 않아도 된다.
+- 세션 관리를 스토리지나 네트워크 자원을 사용한다면 객체 직렬화를 해야 하고, 메모리에서만 관리한다면 객체 직렬화를 할 필요가 없다.
+
+serialVersionUID.
+- Java 직렬화 대상 객체는 동일한 serialVersionUID를 가지고 있어야 한다.
+- 직접 선언하지 않아도, 내부적으로 클래스의 구조 정보를 이용해 자동으로 생성된 해쉬값이 할당된다.
+- 클래스의 변수가 추가되거나 삭제되면 자동으로 생성되는 serialVersionUID가 달라진다.
+- 역직렬화 할 때 기존의 serialVersionUID와 변경된 serialVersionUID가 다르면 InvalidClassException 예외가 발생한다.
+- private static final long serialVersionUID = 1L 처럼 직접 serialVersionUID 값을 관리해야 클래스가 변경되어도 문제없이 직렬화/역직렬화가 가능하다.
+
+직렬화/역직렬화 예외.
+- 클래스의 멤버 변수 타입이 다르면 타입 예외가 발생한다.
+- 멤버 변수를 제거하거나 변수명을 바꾸면 예외는 발생하지 않지만 데이터는 누락된다.
+
+실수 사용 조언.
+- serialVersionUID 는 개발 시 직접 관리.
+- 역직렬화 대상 클래스의 멤버 변수 타입변경 지양.
+- 외부에 장기간 저장될 정보는 Java 직렬화 사용 지양. ( 클래스 변경을 예측할 수 없으므로 )
+- 개발자가 직접 컨트롤할 수 없는 클래스( 프레임워크 또는 라이브러리 제공 클래스 )는 직렬화 지양.
+- 자주 변경되는 클래슨느 Java 직렬화 사용 지양.
+- 역직렬화에 실패하는 상황에 대한 예외처리 필수.
+- 직렬화된 데이터는 타입 정보 등의 클래스 메타정보를 포함하기 때문에 JSON 포맷에 비해 2~10배 사이즈가 크다. ( JSON 사용 고려 )
+
+직렬화 방법.
+- java.io.ObjectOutputStream 객체를 이용.
+
+직렬화 방법 코드 예시.
+ByteArrayOutputStream baos = new ByteArrayOuputStream( ) ;
+ObjectOutputStream oos = new ObjectOutputStream( baos );
+
+CSV Comma-Separated Values.
+- 데이터를 표현하는 가장 많이 사용되는 방법 중 하나로 콤마( , ) 기준으로 데이터를 구분하는 방법.
+- 표 형태의 데이터에서 많이 사용.
+
+CSV 직렬화 예시.
+Member member = new Member( ... );
+String csv = String.format( "%s,%s,%d" , member.getName(), member.getEmail(), member.getAge() );
+
+JSON.
+- 최근에 가장 많이 사용하는 포맷으로 자바스크립트에서 쉽게 사용 가능하고, 다른 데이터 포맷 방식에 비해 오버헤드가 적다.
+- 구조적인 데이터를 전달하는 API 시스템 등에서 많이 사용.
+
+JSON 직렬화 예시.
+Member member = new Member( ... );
+String json = String.format( "", member.gerName(), member.gerEmail(), member.getAge() );
+
+참조.
+- 자바 직렬화, 그것이 알고싶다. 훑어보기편 : https://techblog.woowahan.com/2550/
+- 자바 직렬화, 그것이 알고싶다. 실무편 : https://techblog.woowahan.com/2551/
+- 직렬화 : https://j.mearie.org/post/122845365013/serialization
+- https://okky.kr/article/224715 
+
+
+
+ # 책 추천.
+
+Hello Coding 그림으로 개념을 이해하는 알고리즘
+자바 최적화 가장 빠른 성능을 구현하는 검증된 10가지 기법
+JVM Performance Optimizing 및 성능분석 사례 Java Virtual Machine
+
+
+
+ # MSA Micro Service Architecture.
+
+모놀리식 아키텍처 Monolithic Architecture.
+- 소프트웨어의 모든 구성요소가 한 프로젝트에 통합되어있는 형태이다.
+- Auth 모듈, Posting 모듈, chatting 모듈 등을 개발하고 개발 완료된 Application을 하나의 결과물로 패키징하여 배포되는 형태.
+
+모놀리식 아키텍처의 한계.
+- 부분적인 장애가 전체 서비스 장애로 확대될 수 있다.
+- 부분적인 Scale-out이 어렵다.
+- 여러 컴포넌트가 강하게 결합되어 있기 때문에 서비스의 변경이 어렵고, 수정 시 장애의 영향도 파악하기 힘들다.
+- 배포 시간이 오래 걸린다. ( 규모가 커짐에 따라 작은 변경에도 높은 수준의 테스트 비용 발생 )
+- 한 Framework와 언어에 종속적이다.
+
+MSA Micro Service Architecture.
+- Bounded Context간의 느슨한 결합으로 이루어진 SOA ( Neflix의 MSA 정의 )
+	- Bounded Context : 관심사에 따라 비즈니스 로직을 분리.
+	- 느슨하게 결합된( loosely Coupled ) : 서로 강력한 의존 관계 없이 API 등의 느슨한 규약.
+	- SOA Service Oriented Architecture : 여러 서비스의 상호작용으로 이루어진 소프트웨어에 대한 아키텍처.
+- 서비스의 end-point를 API의 형태로 외부에 노출하고, 실질적인 세부사항들은 모두 추상화한다.
+- 내부의 구현 로직, 아키텍쳐, 프로그래밍 언어, 데이터베이스, 품질 유지 체계와 같은 기술적인 사항들은 서비스 API에 가려진다.
+- 각각의 서비스는 모듈화되어 있으며, 이러한 모듈끼리 RPC 또는 message-driven API 등을 이용하여 통신한다.
+
+MSA의 장점.
+- 각각의 서비스가 모듈화되어 있기 때문에 개별 서비스 개발을 빠르게 진행할 수 있다.
+- 팀 단위로 적절한 기술 스택을 서로 다르게 가져갈 수 있다.
+- 서비스별로 독립적으로 배포할 수 있다. Continuous Deployment도 가볍게 할 수 있다.
+- 각각 서비스의 부하에 따라 개별적으로 Scale-out이 가능하다.
+
+MSA의 단점.
+- 모놀리식 아키텍처에 비해 상대적으로 복잡하다. 개발자는 내부 시스템의 통신을 어떻게 가져가야 할지 정해야 한다.
+- 비즈니스에 대한 DB를 가지고 있는 서비스도 각기 다르고, 서비스 연결에는 통신이 포함되기 때문에 트랜잭션 유지가 어렵다.
+- 통합 테스트가 어렵다. 개발 환경과 실제 운영 환경을 동일하게 가져가는 것이 쉽지 않다.
+- 실제 운영환경의 배포가 어렵다. 서비스 1개를 재배포할 경우 다른 서비스들과 연계가 정상 작동하는지 확인해야 한다.
+
+SOA Service Oriented Architecture 가 흥행하지 못한 이유.
+- MSA 이전에 모놀리식 아키텍쳐의 문제를 해결하고자 나타난 개념.
+- 폴리글랏 퍼시스턴스가 아니다.
+- 폴리글랏 퍼시스턴스 Polyglot Persistence.
+	- 하나의 서비스당 하나의 DB를 사용하는 것.
+	- MSA에서는 하나의 서비스에 하나의 DB를 사용했다.
+- SOA가 나왔을 때 클라우드 서비스가 지금처럼 유명하지 않았다.
+	- 실제 서버컴을 사들여 사내 전산실에서 서버를 가동했다.
+
+
+
+ # 자바 플랫폼 종류.
+
+Java SE Standard Edition.
+- Java 프로그래밍 언어의 핵심 기능을 제공한다.
+- Java 프로그래밍 언어의 기본 유형부터 네트워킹, 보안, 데이터베이스 액세스, GUI 개발 및 XML 구문 분석에 사용되는 고급 클래스까지 정의.
+- 핵심 API 외에도 Java SE 플랫폼은 가상 머신, 개발 도구, 배포 기술, Java 기술 응용프로그램에서 일반적으로 사용되는 기타 클래스 라이브러리 및 도구 키트.
+- 우리가 일반적으로 사용하는 JDK ( Java SE JDK )
+- 주요 패키지 ( java.lang , java.io, java.util, java.awt, javax.rmi, javax.net, ... )
+
+Java EE Enterprise Edition.
+- 대규모, 다계층, 확장 가능하고 안정적이고 안전한 네트워크 애플리케이션을 개발하고 실행하기 위한 API 및 런타임 환경.
+- 현재 Java EE 에서 Jakarta EE로 변경.
+- JDBC, JNDI, EJB, RMI, JSP, Servlet, XML, JMS, JTS, JTA, JavaMail, ... 등의 기술을 제공.
+
+Java ME Micro Edition.
+- 휴대전화, 셋톱박스 등에서 Java 프로그래밍 언어를 지원하기 위해 만들어진 플랫폼. ( 임베디드 용 )
+
+Java FX.
+- 데스크톱 애플리케이션과 리치 인터넷 애플리케이션을 개발하고 배포하는 소프트웨어 플랫폼.
+- 스윙을 대체하기 위해 고안되었다.
+- 윈도우, 리눅스, MacOS의 데스크톱 컴퓨터와 웹 브라우저를 지원한다.
+
+
+
+ # IP 주소.
+
+localhost 주소 바꾸기.
+Windows\System32\drivers\etc\hosts 파일에서 도메인 이름과 ip주소를 변경한다.
+
+
+
+ # JNDI.
+
+JNDI Java Naming and Directory Interface.
+- 디렉터리 서비스에서 제공하는 데이터 및 객체를 발견( discover )하고 참고( lookup )하기 위한 자바 API.
+
+JNDI의 용도.
+- 자바 애플리케이션을 외부 디렉터리 서비스에 연결.
+- 자바 애플릿이 호스팅 웹 컨테이너가 제공하는 구성 정보를 참고.
+
+
+
+ # 함수형 인터페이스.
+
+함수형 인터페이스.
+- 1개의 추상 메소드를 갖고 있는 인터페이스를 의미한다. Single Abstract Method SAM 라고 불리기도 한다.
+
+함수형 인터페이스를 사용하는 이유.
+- 자바의 람다식이 함수형 인터페이스로만 접근이 된다.
+
+
+Supplier<T> 인터페이스.
+- T get( ) 이라는 추상 메소드 하나를 가지고 있다.
+- 매개변수를 받지 않고 단순히 무엇인가<T> 를 반환하는 추상메소드이다.
+
+
+
+
+
