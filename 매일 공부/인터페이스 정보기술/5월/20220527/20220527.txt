@@ -1,0 +1,188 @@
+
+ 정리.
+
+
+
+ # session.
+
+getSession( ) , getSession( true )
+- HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로운 세션을 생성.
+
+getSession( false )
+- HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 null을 반환.
+
+
+
+ # DECODE.
+
+DECODE( 컬럼, 조건1, 값1, 조건2, 값2, ... )
+- if else와 비슷한 기능을 수행한다.
+- 컬럼이 조건1과 같으면 값1을 반환하고, 컬럼이 조건2와 같으면 값2를 반환한다.
+
+
+
+ # RequestContextHolder.
+
+설명.
+- Spring에서 전역으로 Request에 대한 정보를 가져오고자 할 때 사용하는 유틸 클래스이다.
+- Controller가 아닌 Business Layer 등에서 Request 객체를 참고하려 할 때 사용한다.
+
+사용방법.
+- RequestContextHolder.getRequestAttributes( ) : Attributes만 얻어오는 방법.
+- ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes( )).getRequest( ) : HttpServletRequest를 반환하는 방법.
+
+
+
+ # 트랜잭션.
+
+트랜잭션 사용방식 3가지.
+1. 강제적 의사 표시.
+2. @Transactional 어노테이션 사용.
+3. AOP Transaction 설정 사용.
+
+강제적 의사 표시 사용 방법.
+- TransactionAspectSupport.currentTransactionStatus().setRollbackOnly( ) : 롤백을 강제로 시킴.
+- try catch 문에서 사용.
+
+
+
+ # IP 주소 확인하기.
+
+InetAddress 클래스.
+- 자기 PC의 IP address, 이름, DNS를 통한 원격지 IP ADDRESS 등의 정보를 돌려줍니다.
+- 생성자가 default이기 때문에 new 연산자로 객체를 생성할 수 없다. ( 메소드를 사용해야 함 )
+
+InetAddress 객체를 생성하는 메소드.
+- getAllByName( String host ) : host에 대응되는 InetAddress 배열을 반환한다.
+- getByAddress( byte[] addr ) : addr에 대응되는 InetAddress 객체를 반환한다.
+- getByAddress( String host, byte[] addr ) : host와 addr에 대응되는 InetAddress 객체를 반환한다.
+- getbyName( String host ) : 매개변수 host에 대응되는 InetAddress 객체를 반환한다.
+- getLocalHost( ) : 로컬 호스트의 InetAddress 객체를 반환한다.
+
+주요 메소드.
+- getAddres( ) : InetAddress 객체의 실제 IP 주소를 바이트 배열로 리턴한다.
+- getHostAddress( ) : IP 주소를 문자열로 반환한다.
+- getHostName( ) : 호스트 이름을 문자열로 반환한다.
+- toString( ) : IP 주소를 스트링 문자열로 오버라이딩한 메서드.
+
+InetAddress를 통한 IP 주소 얻기.
+- InetAddress.getLocalHost( ).getHostAddress( ) : 
+
+
+
+ # Enumeration, Iterator 인터페이스.
+
+Enumeration 인터페이스.
+- hasMoreElements( ) : 다음 값이 존재하는지 확인하는 메소드. ( true, false )
+- nextElement( ) : 다음 값을 반환하는 메소드.
+
+Iterator 인터페이스.
+- hasNext( ) : 다음 값이 존재하는지 확인하는 메소드. ( true, false )
+- next( ) : 다음 값을 반환하는 메소드. 
+- remove( ) : 현재 조회하는 객체의 레퍼런스를 삭제한다.
+
+
+
+
+ # Reflection 관련 클래스.
+
+Class 클래스.
+- 클래스에 대한 정보를 얻기에 좋은 클래스.
+- 생성자가 따로 없다.
+- ClassLoader 클래스의 defineClass( ) 또는 Object 클래스의 getClass 메소드를 통해 인스턴스를 얻는다.
+
+Method 클래스.
+- 메소드에 대한 정보를 얻을 수 있다.
+- 생성자가 없다.
+- Class 클래스의 getMethods( ) 또는 getDeclaredMethod( )를 사용해서 얻는다.
+
+Field 클래스.
+- 클래스에 있는 변수들의 정보를 제공하기 위해서 사용한다.
+- 생성자가 없다.
+- Class 클래스의 getField( ) 또는 getDeclaredFields( )를 사용해서 얻는다.
+
+getDeclaredFields( ) 메소드.
+- public / private을 포함한 모든 멤버변수 정보에 접근하는 방법이다.
+- public에만 접근할 때는 getFields( ) 메소드를 사용한다.
+
+setAccessible( ) 메소드.
+- getDeclaredFields 메소드를 통해 멤버변수 정보에는 접근이 가능하지만, 값에는 접근이 불가능하다.
+- private 멤버변수 값을 read/write 하기 위해선 setAccessible를 통해 필드 값에 접근을 허용해줘야 한다.
+- 해당 setting 없이 private 멤버변수의 값에 접근하게 되면 IllegalAccessException 예외가 발생한다.
+
+사용예시.
+Class<?> cls = 인스턴스.getClass( ) ;
+for( Field field : cls.getDeclaredFields( ) ) {
+	field.setAccessible( true ) ;
+
+	// 인스턴스 field의 값을 얻는다.
+	field.get( cls );				
+}
+
+
+
+ # Object.
+
+getClass( ) 메소드.
+- 현재 참조하고 있는 클래스를 확인할 수 있는 메소드이다.
+
+사용방법.
+- 인스턴스.getClass( ) : Class<타입> 타입을 반환함.
+
+
+
+ # Collections.unmodifiable...( );
+
+unmodifiableSet( new ...Set<>( .... ) ) ;
+- 컬렉션을 wrapping하여 변경 불가능한 컬렉션을 만든다.
+
+
+
+ # JSON 데이터 만들기.
+
+JSONParser 클래스.
+- JSON으로 변경가능한 형태의 객체를 parse( 객체 ) 메소드를 통해 JSON의 형태로 바꿔준다.
+
+결과 JSON객체가 단건 일때.
+JSONParser parser = new JSONParser( ) ;
+JSONObject obj = (JSONObject)parser.parse( JSON으로 변경가능한 데이터 ) ;
+
+결과 JSON객체가 다건 일때.
+JSONParser parser = new JSONParser( ) ;
+JSONArray jsonArr = (JSONArray)parser.parse( JSON으로 변경가능한 데이터 ) ;
+
+다건 JSON객체가 JSON 내부에 있을때.
+JSONObject jsonMain = (JSONObject)obj ;
+JSONArray jsonArr = (JSONArray)jsonMain.get( "배열이름" ) ;
+
+
+
+ # 자바 예외처리.
+
+Throwable 클래스.
+- 객체에 문제의 상황에 대한 설명과 문제가 발생했을 때의 상황을 저장해서 throw 구문을 통해 상위 메소드로 전달할 수 있게 한다.
+- Throwable 클래스를 상속해서 구현한 클래스에는 Exception 클래스와 / Error 클래스가 있다.
+
+Error 클래스.
+- JVM 환경에서 발생하는 문제를 다룬다.
+- 개발자가 처리하기 힘든 에러들을 의미한다.
+- 에러로 던져진 상황은 try-catch로 잡아서 해결하려 하지말아라. ( Effective Java )
+
+Exception 클래스.
+- 사용자의 잘못된 입력이나 개발자의 잘못된 로직으로 발생하는 프로그램 오류를 의미한다.
+- 대부분 애플리케이션 프로그램의 실행을 중단할 정도로 심각한 문제는 아니다.
+- 예외상황에 대한 처리코드를 추가해서 전체적인 실행 흐름에는 문제가 없도록 할 수 있다.
+
+Checked Exception.
+- 반드시 코드에서 처리해야하는 예외다.
+- try-catch 구문을 이용해 처리해주던가, throws를 통해 던져줘야 한다.
+- Checked Exception을 처리하지 않으면 컴파일 에러를 발생시키며 예외에 대한 처리를 해달라고 요청하게 된다.
+- RuntimeException 클래스와 이 클래스를 상속한 클래스를 제외한 나머지 Exception들은 모두 Checked Exception이다.
+
+Unchecked Exception.
+- 컴파일 타임에 체크되지 않는다.
+- try-catch 구문으로 잡아서 처리하거나 throws로 상위 메소드에 전달하지 않더라도 컴파일에는 문제가 없다.
+
+
+
+ 
