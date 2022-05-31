@@ -1,0 +1,102 @@
+
+ 정리.
+
+
+
+ # REST.
+
+REST Representational State Transfer.
+- 웹 서비스와 모바일 애플리케이션 경량화의 필요에 맞춘 아키텍처 원칙 세트.
+
+RESTful 애플리케이션이 갖춰야 할 요소.
+1. 클라이언트, 서버, 리소스로 구성된 클라이언트/서버 아키텍처가 필요.
+2. 요청이 통과하는 서버에 클라이언트 컨텐츠가 저장되지 않는 스테이트리스 클라이언트/서버 커뮤니케이션이 필요.
+3. 일부 클라이언트/서버 간 상호 작용의 필요성을 제거할 캐시 가능 데이터가 필요.
+4. 표준화된 형식으로 정보를 전송할 수 있도록 구성 요소 간 통합된 인터페이스가 필요.
+5. 클라이언트/서버 간의 상호 작용을 계층적으로 조정할 수 있도록 계층화된 시스템 제약이 필요.
+6. 실행 가능한 코드를 전송해 서버가 클라이언트의 기능을 확장할 수 있게 해주는 코드 온디맨드가 필요.
+
+
+
+ # SOAP.
+
+SOAP Simple Object Access Protocol.
+- 다른 언어로 다른 플랫폼에서 빌드된 애플리케이션이 통신할 수 있도록 설계된 최초의 표준 프로토콜.
+- 복잡성과 오버헤드를 증가시키는 빌트인 룰을 적용하므로, 페이지 로드 시간이 길어질 수 있습니다.
+- 빌트인 컴플라이언스를 제공한다.
+- 데이터에 대한 요청이 HTTP, SMTP, TCP 등의 다양한 애플리케이션 레이어 프로토콜로 처리될 수 있다.
+- 요청이 수신되면, 인간과 기계가 모두 읽을 수 있는 XML 문서 형식으로 SOAP 메시지가 반환.
+
+빌트인 컴플라이언스 표준.
+- 웹 서비스 보안 WS-security : 토큰이라고 불리는 고유 식별자를 통해 메시지를 보호하고 전송하는 방식을 표준화.
+- WS-ReliableMessaging : 불안정한 IT 인프라로 전송되는 메시지 간 오류 처리를 표준화.
+- 웹 서비스 주소지정( WS-Addressing ) : 심층 네트워크에 라우팅 정보를 유지관리하는 대신, SOAP 헤더 내에 정보를 패키징.
+- 웹 서비스 기술 언어 WSDL : 웹 서비스가 무엇을 하는지, 해당 서비스의 시작과 종료 위치를 기술.
+
+SOAP와 REST의 차이.
+- REST는 유연한 구현을 제공하는 가이드라인 세트, SOAP는 XML 메시징과 같은 특정 요건이 있는 프로토콜.
+- REST는 사물인터넷, 서버리스 컴퓨팅과 같이 새로운 컨텍스트에 이상적이다.
+- SOAP는 보안과 트랜잭션 컴플라이언스를 제공하지만, 이로 인해 좀 더 무거운 경향이 있다.
+
+
+
+ # 예외처리.
+
+@ExecptionHandler.
+- @Controller, @RestController가 적용된 Bean내에서 발생하는 예외를 잡아서 하나의 메서드에서 처리해주는 기능을 한다.
+- @Controller가 아닌 @Service, ... 와 같은 빈들에서는 사용할 수 없다.
+
+ExceptionHandler 사용방법.
+@ExceptionHanlder( { NullPointerException.class, Exception.class, ... } )
+public void 메소드이름( ... ) { ... }
+
+@ControllerAdvice.
+- @EControllerAdvice는 몯느 @Controller 즉, 전역에서 발생할 수 있는 예외를 잡아 처리해주는 annotation이다.
+- 별도의 속성값 없이 사용하면 모든 패키지 전역에 있는 컨트롤러를 담당하게 된다.
+
+@ResponseEntity.
+- Http Request 또는 Response를 나타내기 위해 제공하는 HttpEntity 클래스가 존재한다.
+- HttpEntity는 HttpHeader와 HttpBody를 포함하는 클래스다.
+- HttpEntity와 HttpStatus 속성을 가지는 클래스가 REquestEntity, ResponseEntity 클래스이다.
+
+@ResponseStatus( HttpStatus.BAD_REQUEST )
+- HttpStatus를 다른 방식으로 표현하는 방법이다.
+- @ResponseStatus의 default 값은 HttpStatus.INTENAL_SERVER_ERROR( 500 )이다.
+
+
+
+ # 불변객체.
+
+immutable object.
+- 생성 후 그 상태를 바꿀 수 없는 객체를 말한다.
+- 객체 전체가 불변인 것도 있고, 일부 속성만 불변인 것도 있다.
+- 외부에서 그 객체의 상태가 변하지 않은 것처럼 보인다면 불변 객체로 보기도 한다.
+
+참조변수에 대한 불변 객체.
+1. 참조 변수가 일반 객체인 경우 참조 변수도 불변 객체여야 한다.
+2. primitive타입의 Array일 경우, 
+3. List인 경우, 
+
+읽어보기 : https://steady-coding.tistory.com/559
+
+
+
+ # JS.
+
+창이 바뀔때 이벤트 발생.
+window.addEventListener( 'resize', function( ) { 
+	...
+} ) ;
+
+
+
+ # 전략패턴.
+
+읽어보기 : https://www.hungrydiver.co.kr/bbs/detail/develop?id=47
+
+
+
+
+
+
+
