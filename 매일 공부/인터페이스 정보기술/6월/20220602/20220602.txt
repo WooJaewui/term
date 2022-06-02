@@ -1,0 +1,101 @@
+
+ 정리.
+
+
+
+ # 리눅스를 사용하는 이유.
+
+무료 오픈소스.
+- 완전 무료 정책이다.
+
+우수한 보안성.
+- 오픈소스이기 때문에 보안을 지키기 위해 여러 사람들이 수정하고 보완한다.
+
+구조 안정성.
+- 충돌이 잘 발생하지 않는다.
+- 오픈소스이기 때문에 버그가 발생하면 여러 사람들이 수정하고 보완한다.
+
+
+
+ # SAP ERP와 타시스템의 연동.
+
+RFC Remote Function Call 
+- business app이 다른 시스템과 서로 커뮤니케이션하고 정보 교환을 할 수 있는 메커니즘이다.
+
+
+
+ # Property 읽기.
+
+PropertySourcesPlaceHolderConfigurer.
+- PropertySourcesPlaceHolderConfigurer는 추상 클래스 PlaceholderConfigurerSupport를 구현한 클래스.
+- PropertySource를 추가하여 @Value 어노테이션의 ${ ... }  부분에 프로퍼티 값을 주입해준다.
+- Bean으로 등록해서 사용하며, PropertySource를 여러개 등록할 수 있다.
+- 프로퍼티가 겹칠 떈 먼저 등록된 PropertySource의 프로퍼티가 우선순위를 가진다.
+- 기본은 파일의 값이 로컬 설정보다 우선순위가 높다. 로컬 설정을 높게- 하려면 따로 설정을 바꿔야 한다.
+
+톰캣에서 읽어오기.
+-Dspring.profiles.active = a 
+	- a 프로퍼티 파일을 읽어온다.
+
+
+
+ # tiles 레이아웃 사용하기.
+
+Maven 설정하기.
+<dependency>
+	// 버전은 상황에 따라 다를 수 있다.
+	<groupId>org.apache.titles</groupId>
+	<artifactId>tiles-jsp</artifactId>
+	<version>3.0.5</version>
+</dependency>
+
+
+
+ # CORS.
+
+CORS Cross-Origin Resource Sharing.
+- 교차 출처 리소스 공유.
+- Origin : Protocol, Host, port를 합친 것을 의미한다.
+
+Preflight Request.
+- 우리가 웹 어플리케이션을 개발할 때 가장 많이 마주치는 시나리오이다.
+- 브라우저는 요청을 한 번에 보내지 않고 예비 요청과 본 요청으로 나누어서 서버로 전송한다.
+- 이때, 본 요청을 보내기 전에 보내는 예비 요청을 Preflight라고 부른다.
+- 예비 요청은 OPTIONS 메소드를 가지고 있으며, 본 요청을 보내기 전에 요청이 안전한지 확인하는 것이다.
+
+Simple Request.
+- 예비 요청을 보내지 않고 바로 서버에게 본 요청부터 보낸 후, 서버가 응답에 CORS 정책 위반 여부를 작성하여 보내준다.
+- 예비 요청의 존재 유무만 다르다.
+
+Simple Request 조건.
+1. 요청의 메소드는 GET, HEAD, POST 중 하나여야 한다.
+2. Accept, Accept-Language, Content-Language, Content-Type, DPR, Downlink, Save-Data, Viewport-Width, Width를 제외한 헤더를 사용하면 안된다.
+3. 만약 Contetn-Type을 사용하는 경우에는 application/x-www-form-urlencoded, multipart/form-data, text/plain만 허용된다.
+==> 일반적인 방법으로 웹 어플리케이션 아키텍처를 설계하게 되면 거의 충족시키기 어려운 조건이다.
+
+Credentialed Request.
+- 인증된 요청을 사용하는 방법이다.
+- CORS의 기본적인 방식이라기 보다는 다른 출처간 통신에서 좀 더 보안을 강화하고 싶을 때 사용하는 방법이다.
+- Credentials 옵션을 포함시켜 Access-Control-Allow-Origin만 확인하는 것이 아니라 빡빡한 검사 조건을 추가한다.
+
+Credentials 옵션.
+- same-origin : 같은 출처 간 요청에만 인증 정보를 담을 수 있다.
+- include : 모든 요청에 인증 정보를 담을 수 있다.
+- omit : 모든 요청에 인증 정보를 담지 않는다.
+
+Credentials include인 경우 추가 조건.
+1. Access-Control-Allow-Origin에는 *를 사용할 수 없으며, 명시적인 URL이어야 한다.
+2. 응답 헤더에는 반드시 Access-Control-Allow-Credentials: true가 존재해야 한다.
+
+Access-Control-Allow-Origin 세팅하기.
+- CORS 정책 위반으로 인한 문제를 해결하는 가장 대표적인 방법은 Access-Control-Allow-Origin 헤더에 알맞은 값을 세팅해주는 것이다.
+- 와일드카드인 "*"을 사용하여 이 헤더를 세팅하게 되면 모든 출처에서 오는 요청을 처리할 수 있지만, 보안적으로 문제가 생길 수 있다.
+
+Webpack Dev SErver로 리버스 프록싱하기.
+- 프론트엔드 개발자는 대부분 웹팩과 webpack-dev-server를 사용하여 자신의 머신에 개발 환경을 구축하는데,
+  이 라이브러리가 제공하는 프록시 기능을 사용하면 아주 편하게 CORS 정책을 우회할 수 있다.
+
+
+
+
+
