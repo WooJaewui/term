@@ -1,0 +1,51 @@
+
+ 정리.
+
+
+
+ # JS.
+
+FORM.toObject( );
+- form에 있는 데이터를 객체로 만드는 함수이다.
+
+document.addEventListener( "DOMContentLoaded", function( ... ) { ... } ) ;
+
+
+
+ # 연동.
+
+1. 프로젝트관리 DB 정보
+# DB
+jdbc.driver=core.log.jdbc.driver.OracleDriver
+jdbc.username=IIT_PM_USER
+jdbc.password=IIT_PM_USER
+jdbc.url=jdbc:oracle:thin:@203.229.218.187:22221/iit
+
+2. API 연동 정보
+# 개발가이드 URL
+https://documenter.getpostman.com/view/6863253/S1TVWcri?version=latest#70b8ab2d-a43d-4d7d-aea0-d9d6d5403750
+- 인증 및 호출하기
+- API 목록 - 인사관리 - 조직도 조회, 사용자 조회 카테고리 참고
+# 조직연동 API KEY
+069fbc633b14c154e273ac06856edd1e
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
