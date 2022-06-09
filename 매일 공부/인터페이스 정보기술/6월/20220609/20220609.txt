@@ -1,0 +1,29 @@
+
+ 정리.
+
+
+
+ # DB Mapping.
+
+셀렉트 오류.
+- SELECT 10 FROM DUAL와 같이 사용했을 때 resultType="int" 로 하면 에러가 발생한다. ( key, value 값으로 매핑해야 되는 것 같다 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
