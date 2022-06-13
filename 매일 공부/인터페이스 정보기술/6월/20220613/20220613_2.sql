@@ -1,0 +1,5 @@
+
+SELECT * FROM RS_PCN;
+
+
+
