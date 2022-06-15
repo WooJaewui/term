@@ -1,0 +1,36 @@
+
+ 정리.
+
+
+
+ # 정리.
+
+UserMController
+- Controller putUserM.lims => 권한 관련 코드 주석처리.
+
+UserMServiceImpl
+- putUserM메소드 => 권한관련 180 ~ 195 주석처리.
+
+CommonDao.
+- getSysManageInfo => CTMMNY_CNTRMSR_AT 주석처리.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
