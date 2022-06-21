@@ -1,0 +1,119 @@
+
+ 정리.
+
+
+
+ # 스트림.
+
+스트림.
+- 데이터 처리연산을 지원하도록 소스에서 추출된 연속된 요소.
+- 스트림은 '데이터의 흐름' 이다.
+- 람다를 이용해서 코드의 양을 줄이고 간결하게 표현할 수 있다. ( 배열과 컬렉션을 함수형으로 처리 가능 )
+
+
+스트림 과정.
+1. 생성하기.
+2. 중간 작업 intermediate operations.
+3. 최종 작업 terminal operations.
+
+
+생성하기.
+- 배열 스트림.
+	String[ ] arr = { "a", "b", "c" } ;
+	Stream<String> stream = Arrays.stream( arr ) ;
+- 컬렉션 스트림.
+	List<String> list = Arrays.asList( "a", "b", "c" );
+	Stream<String> stream = list.stream( );
+- builder( ) 생성자.
+	Stream.<String>builder( )
+		.add( "a" )
+		.add( "b" )
+		.build( ) ;
+- generate( ) 메소드.
+	Stream.generate( ( ) -> "a" ).limit(5);
+- iterate( ) 메소드.
+	Stream<Integer> stream = Stream.iterate( 30, n -> n + 2 ).limit(5);
+- 기본 타입협 스트림.
+	IntStream intStream = IntStream.range( 1, 5 ); 		// [ 1,2,3,4 ]
+
+
+중간 연산.
+- Filtering.
+	Stream<String> stream = names.stream( )
+				.filter( name -> name.contains( "a" ) );
+- Mapping.
+	Stream<String> stream = productList.stream( )
+				.map( Product::getAmount );
+- Sorting.
+	IntStrema.of( 14, 11, 20, 39, 23 )
+		.sorted( )
+		.boxed( )
+		.collect( Collectors.toList( ) ) ;
+
+
+최종 연산.
+- 통계 값.
+	int sum = IntStream.range( 1, 10 ).sum( ) ;
+	int count = IntStream.range( 1, 10 ).count( ) ;
+	int max = IntStream.range( 1, 10 ).max( ) ;
+	int avg = IntStream.range( 1, 10 ).average( ) ;
+- Reduction.
+	OptionalInt reduced = IntStream.range( 1, 4 )
+				.reduce( ( a, b ) -> { return Integer.sum( a, b ) ; } ) ;
+- Collecting.
+	List<String> collectorCollection = productList.stream( )
+					.map( Product::getName )
+					.collect( Collectors.toList( ) );
+- Matching.
+	boolean anyMatch = names.stream( ).anyMatch( name -> name.contains( "a" ) ) ;
+
+
+
+ # 스트림 내부 연산.
+
+파이프라이닝.
+- 스트림 연산들은 서로 연결하여 큰 파이프 라인을 구성할 수 있도록 연산 후 스트림 자신을 반환한다.
+
+스트림 특징.
+1. 최종 연산이 있어야만 스트림 연산이 수행된다.
+2. 스트림은 요소를 소비하기 때문에 한번만 반복문 처리할 수 있다.
+3. 내부 반복을 사용한다. 
+	- 작업을 병렬로 처리할 수 있고 더 최적화된 다양한 순서로 처리할 수 있다.
+
+출처.
+반복문 성능 : https://jypthemiracle.medium.com/java-stream-api%EB%8A%94-%EC%99%9C-for-loop%EB%B3%B4%EB%8B%A4-%EB%8A%90%EB%A6%B4%EA%B9%8C-50dec4b9974b
+
+
+
+ # 스트림과 단순 for문.
+
+스트림과 for문 성능비교.
+- 매번 결과가 조금씩 차이나긴 하지만 for문이 stream을 사용했을 때보다 배로 빠르다.
+
+for문이 빠른 이유.
+1. for문은 단순 인덱스 기반이다.
+	- 단순 인덱스 기반 반복문으로 메모리 접근이기 때문에 Stream에 비해 빠르고 오버헤드도 없다.
+	- Stream의 경우 JVM이 이것저것 처리해줘야하는 것들이 많아 실행시 느릴 수 밖에 없다.
+2. for문은 컴파일러가 최적화를 시킨다.
+	- for문은 오래전부터 사용했기 때문에 컴파일러가 이미 다양한 for문 학습을 통해 최적화 방법으로 수행할 수 있다.
+
+그럼에도 Stream을 사용해야 하는 이유.
+1. 가독성이 좋다.
+	- 개발자의 역량에 따라 다르지만 일반적으로 코드를 간결하게 만들 수 있다.
+	- 개발자의 역량에 따라 오히려 가독성이 떨어질 수도 있다.
+2. 코드로 작성해야하는 로직을 함수로 간단하게 해결 가능해진다.
+==> Stream은 능숙하게 다룰 수 있을때 사용하는 것이 좋을 것 같다. ( 그전까지는 for문 사용 )
+
+
+
+ # SVN
+
+출처.
+SVN : https://lky1001.tistory.com/107
+
+
+
+
+
+
+
