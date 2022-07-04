@@ -1,0 +1,159 @@
+
+ 정리.
+
+
+
+ # Java.
+
+RestTemplate.
+- http 통신에 유용하게 쓸 수 있는 템플릿으로 RESTful 원칙을 지킨다.
+- 기계적이고 반복적인 코드들을 깔끔하게 정리해준다.
+- HttpMessageConverter를 통해 Resouce를 JSON, xml 으로 변환시켜 준다.
+
+RestTemplate 동작 순서.
+1. 어플리케이션이 RestTemplate를 생성하고, URI, HTTP 메소드 등의 헤더를 담아 요청한다.
+2. RestTemplate는 HttpMessageConverter를 사용하여 requestEntity를 요청메시지로 변환한다.
+3. RestTemplate는 ClientHttpRequestFactory로 부터 ClientHttpRequest를 가져와서 요청을 보낸다.
+4. ClientHttpRequest는 요청메세지를 만들어 HTTP 프로토콜을 통해 서버와 통신한다.
+5. RestTemplate는 ResponseErrorHandler로 오류를 확인하고 있다면 처리로직을 태운다.
+6. ResponseErrorHandler는 오류가 있다면 ClientHttpResponse에서 응답데이터를 가져와서 처리한다.
+7. RestTemplate는 HttpMessageConverter를 이용해서 응답메시지를 java object( Class responseType )로 변환한다.
+8. 어플리케이션에 반환된다.
+
+주요 메서드.
+- exchange : 헤더세팅해서 HTTP Method로 요청보내고 ResponseEntity로 반환받음.
+- getForObject : get 요청을 보내고 java object로 매핑받아서 반환받음.
+- getForEntity : get 요청을 보내고 ResponseEntity로 반환받음.
+- postForLocation : post 요청을 보내고 URI로 반환받음.
+- postForObject : post 요청을 보내고 ResponseEntity로 반환받음.
+
+출처.
+- https://sjh836.tistory.com/141
+
+
+
+ # 운영체제 저장소.
+
+드라이브 drive.
+- 데이터 저장소.
+
+volume.
+- HDD, SDD 같은 데이터를 저장하는 논리적인 드라이브이다.
+- 운영체제에서 사용하는 C드라이브, D드라이브 등을 의미한다.
+- C라이브에 파일을 저장하려면 실제 물리적 드라이브와 마운트해야 사용할 수 있다.
+
+마운트.
+- 볼륨을 컴퓨터가 사용할 수 있도록 적용하는 과정. 
+- 마운트라는 용어는 볼륨 외에도 외부장치( 마우스, 키보드, ... )를 연결할 때도 사용한다.
+
+
+
+ # 클로저.
+
+어휘적 범위 지정 Lexical Scoping.
+- 함수를 어디에 선언했는지에 따라 상위 스코프를 결정하는 것. ( 함수의 선언 )
+
+클로저 closure.
+- 함수 + 함수를 둘러싼 환경( Lexical enviornment )를 의미한다.
+
+참조.
+https://poiemaweb.com/js-closure.
+
+
+
+ # Random 클래스.
+
+Random 클래스.
+- java.util 패키지다.
+- 난수를 생성하는 클래스로 객체를 생성하여 사용한다.
+
+함수.
+- nextBoolean( ) : boolean형 난수 반환.
+- nextInt( ) : int형 난수 반환.
+- nextInt( int n ) : 0~n 사이의 정수형 난수 반환.
+- nextLong( ) : long형 난수 반환.
+- nextFloat( ) : float형 난수 반환.
+- nextDouble( ) : double형 난수 반환.
+- nextBytes( byte[] bytes ) : buffer를 난수로 채운다.
+
+장점.
+- 객체를 재활용해서( 메소드 여러번 호출 가능 ) 계속 난수를 생성할 수 있다.
+
+
+
+ # HTML.
+
+overflow 속성.
+- visible : 넘칠 경우 컨텐츠가 상자 밖으로 보여진다.
+- hidden : 넘치는 부분은 보여지지 않는다.
+- scroll : 스크롤바가 추가되어 스크롤할 수 있다. ( 필요 없어도 스크롤바가 생성 )
+- auto : 컨텐츠 량에 따라 스크롤바를 추가할지 자동으로 결정된다. ( 필요한 부분에만 생성 )
+
+
+
+ # 기본 패키지.
+
+java.lang 패키지.
+- 자바 프로그램의 기본적인 클래스를 담고 있는 패키지.
+- java.lang 패키지에 있는 클래스와 인터페이스는 import 없이 사용할 수 있다.
+
+java.lang 패키지 종류.
+- object : 모든 클래스의 최상위 클래스.
+- System : 데이터를 입력 출력할 때 사용, JVM을 종료시킬 때 사용, GC 실행 요청시 사용.
+- Class : 클래스를 메모리로 로딩할 때 사용.
+- String : 문자열을 저장하고 여러 가지 정보를 얻을 때 사용.
+- StringBuffer, StringBuilder : 문자열을 저장하고 내부 문자열을 조작할 때 사용.
+- Math : 수학 함수를 이용할 때 사용.
+- 래퍼 클래스 : 기본 타입의 값을 갖는 객체를 만들 때 사용.
+
+java.util. 패키지.
+- 자료 구조, 날짜와 관련된 클래스, 지역화 관련 클래스 등.
+
+java.util 패키지 종류.
+- Arrays : 배열을 조작할 때 사용.
+- Calendar : 운영체제의 날짜와 시간을 얻을 때 사용.
+- Date : 날짜와 시간 정보를 저장하는 클래스.
+- Objects : 객체 비교, null 여부 등을 조사할 때 사용.
+- StringTokenizer : 특정 문자로 구분된 문자열을 뽑아낼 때 사용.
+- Random : 난수를 얻을 때 사용.
+- Pattern : 정규식에 사용되는 패턴 기호를 저장.
+- Scanner : 화면, 파일, 문자열과 같은 문자데이터를 읽어오는데 도움을 줌.
+- BigInteger : int, long 정수형 타입보다 큰 값을 사용할 수 있다.
+- BigDecimal : 정수를 이용해서 실수를 표현한다.
+
+java.io 패키지.
+- java.nio 패키지와 함께 파일이나 통신 등 디지털 정보으 ㅣ입출력을 처리하는 클래스가 정의된 패키지.
+
+java.io 패키지 이름 규칙.
+- byte 단위 입출력은 Stream으로 끝나고, 문자 단위 입출력은 Reader/Writer로 끝난다.
+- 중간에는 입력과 출력을 구분하기 위해 Input/Output을 작성한다.
+- 접두어 부분에는 입출력의 데이터 종류를 확인할 수 있도록 Data, File, Object, Buffered 등으로 나타낸다.
+
+출처.
+https://koey.tistory.com/241
+https://jammdev.tistory.com/136
+http://www.incodom.kr/java/java.io#h_71e41b4d61cd038fbaa44a51d0511b1f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
