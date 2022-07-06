@@ -1,0 +1,35 @@
+
+ 정리.
+
+
+
+ # IntelliJ 설정.
+
+한글 깨짐 현상 해결.
+- Settings -> Editor -> General -> File Encodings -> UTF-8로 변경.
+- Help -> Edit Custom VM Options.
+	-Dfile.encoding=UTF-8
+	-Dconsole.encoding=UTF-8
+
+오류.
+- Database 연결하기.
+- Dialects 설정하기 -> SQL Dialects -> Oracle / Oracle로 변경.
+
+injects Language 
+
+
+
+ # Java.
+
+도메인 얻는 방법.
+- request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+
+
+
+
+
+
+
+
+
+
