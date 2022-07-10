@@ -1,0 +1,39 @@
+
+ 리플렉션 정리.
+
+
+
+ # 리플렉션.
+
+리플렉션 예시.
+// 상속받은 메소드를 포함한 모든 메소드 가져오기.
+Method[ ] methods = 클래스.getClass( ).getMethods( ); 
+// 자신의 클래스에서 선언한 메소드만 가져오기.
+Method[ ] methods = 클래스.getClass( ).getDeclaredMethods( );
+
+메소드 활용.
+// 모든 어노테이션을 가져옴.
+method.getDeclaredAnnotations( ) ;
+// 타입에 맞는 어노테이션 하나만 가져옴.
+method.getDeclaredAnnotation( 타입.class ) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
