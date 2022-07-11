@@ -17,7 +17,8 @@ method.getDeclaredAnnotations( ) ;
 // 타입에 맞는 어노테이션 하나만 가져옴.
 method.getDeclaredAnnotation( 타입.class ) 
 
-
+출처.
+https://www.youtube.com/watch?v=ni6qfiHcuUo&list=PL93mKxaRDidFGJu8IWsAAe0O7y6Yw9f5x&index=5
 
 
 
