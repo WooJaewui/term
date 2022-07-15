@@ -1,0 +1,9 @@
+SELECT * FROM SY_USER
+ORDER BY USER_ID DESC;
+
+
+
+
+
+
+
