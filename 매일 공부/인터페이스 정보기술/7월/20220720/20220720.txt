@@ -1,0 +1,53 @@
+
+ 정리.
+
+
+
+
+10번.
+
+문제.
+Client Name -> charger_nm 담당자 이름은 영어 컬럼이 없다. ( IM_RCEPT_ENTRPS 테이블 )
+
+해결책.
+1. 담당자 이름을 대표 이름으로 바꾼다.
+	- 전화 번호도 담당자 번호가 아닌 회사 번호로 되어 있다.
+	- IM_RCEPT_ENG_INFO 테이블에도 컬럼이름이 대표 이름으로 되어 있다.
+
+2. IM_RCEPT_ENTRPS 테이블에 CHARGER_ENG_NM 컬럼을 추가한다. ( 내부적으로 바꿔야할 로직들이 생긴다 )
+	- SY_ENTRPS_CHARGER 테이블에 CHARGER_ENG_NM을 접수 때 IM_RCEPT_ENTRPS로 가져와야 함. 
+	- 다른 기능 추가가 필요할 수 있음.
+
+
+
+
+
+
+
+
+
+
+11번.
+
+영문성적서에는 있고 번역본등록에는 없는 것들.			IM_RCEPT_ENG_INFO( 접수 영문 정보 ) 테이블 컬럼 존재 유무	실제 데이터 테이블, 컬럼
+							( 번역본등록 팝업에서 저장하면 데이터가 저장되는 테이블 )
+
+1. Issue No 발행번호 				-> 	X 						-> 	IM_ISSU ( IM 발급 ) ISSU_SEQNO
+2. Receipt No 접수번호 				-> 	O ( RCEPT_SEQNO )				-> 	IM_RCEPT_SPLORE ( IM 접수 시료 ) RCEPT_SEQNO
+3. Test Completion Date 검사완료일 			->	X						-> 	IM_RCEPT_EXPR_IEM ( IM 접수 시험 항목 ) RESULT_REGIST_DT
+4. Date of Receipt 접수연월일 			->	X						-> 	IM_RCEPT ( IM 접수 ) RCEPT_DTE
+5. Manufacturing report Number 제조번호 		->	X						->	IM_RCEPT_SPLORE ( IM 접수 시료 ) MNFCTUR_NO
+														SY_IFSN_BSN ( SY 품목 제조 신고 ) PRDLST_MNFCTUR_SEQNO
+6. Batch Number 품목제조신고 번호 			-> 	X						->	IM_RCEPT_SPLORE( IM 접수 시료 ) PRDLST_MNFCTUR_STTEMNT_NO
+
+
+
+=> 이번 추가개발에 언급된 제조번호만 추가할 것인지 ?? 
+    아니면, 모두 추가할 것인지 ??
+
+
+
+
+
+
+
